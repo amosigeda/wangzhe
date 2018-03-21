@@ -68,10 +68,10 @@ public class LocationInfo extends PublicVoBean implements Serializable{
 	
 	private Integer liveuser;
 	private Integer payuser;
-	private BigDecimal runwater;
-	private BigDecimal payarpu;
-	private BigDecimal livearpu;
-	private BigDecimal payrate;
+	private String runwater;
+	private String payarpu;
+	private String livearpu;
+	private String payrate;
 	private String erkeep;
 	private String sankeep;
 	private String qikeep;
@@ -327,28 +327,29 @@ public class LocationInfo extends PublicVoBean implements Serializable{
 	public void setPayuser(Integer payuser) {
 		this.payuser = payuser;
 	}
-	public BigDecimal getRunwater() {
+
+	public String getRunwater() {
 		return runwater;
 	}
-	public void setRunwater(BigDecimal runwater) {
+	public void setRunwater(String runwater) {
 		this.runwater = runwater;
 	}
-	public BigDecimal getPayarpu() {
+	public String getPayarpu() {
 		return payarpu;
 	}
-	public void setPayarpu(BigDecimal payarpu) {
+	public void setPayarpu(String payarpu) {
 		this.payarpu = payarpu;
 	}
-	public BigDecimal getLivearpu() {
+	public String getLivearpu() {
 		return livearpu;
 	}
-	public void setLivearpu(BigDecimal livearpu) {
+	public void setLivearpu(String livearpu) {
 		this.livearpu = livearpu;
 	}
-	public BigDecimal getPayrate() {
+	public String getPayrate() {
 		return payrate;
 	}
-	public void setPayrate(BigDecimal payrate) {
+	public void setPayrate(String payrate) {
 		this.payrate = payrate;
 	}
 	public String getErkeep() {

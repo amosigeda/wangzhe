@@ -65,16 +65,15 @@ function add(){
 		<table width="100%" class="table" border=0 cellpadding="0"
 			cellspacing="1">
 			<tr>
-				<th colspan="25" nowrap="nowrap" align="left">渠道信息
-				<input type="button" class="but_1" accesskey="a"
-							tabindex="a" value="添 加" onclick="add()">
-							
+				<th colspan="25" nowrap="nowrap" align="left">渠道信息 <input
+					type="button" class="but_1" accesskey="a" tabindex="a" value="添 加"
+					onclick="add()">
+
 				</th>
 			</tr>
 			<tr class="title_3">
 				<td colspan="25">
-				
-				<%-- 日期 <input name="startTime" type="text"
+					<%-- 日期 <input name="startTime" type="text"
 					id="startTime" style="cursor:text"
 					value="<%CommUtils.printReqByAtt(request,response,"fNow_date");%>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" size="15"
@@ -82,26 +81,19 @@ function add(){
 					id="endTime" style="cursor:text"
 					value="<%CommUtils.printReqByAtt(request,response,"now_date");%>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" size="15"
-					class="Wdate" readonly>  --%>
-					日期<input id="startTime"
+					class="Wdate" readonly>  --%> 日期<input id="startTime"
 					name="startTime" type="text" class="txt_1"
 					value="<%CommUtils.printReqByAtt(request,response,"startTime");%>"
-					size="15"> --
-					<input id="endTime"
-					name="endTime" type="text" class="txt_1"
+					size="15"> 至 <input id="endTime" name="endTime" type="text"
+					class="txt_1"
 					value="<%CommUtils.printReqByAtt(request,response,"endTime");%>"
-					size="15"> 
-					
-					游戏<input id="gamename"
-					name="gamename" type="text" class="txt_1"
+					size="15"> 游戏<input id="gamename" name="gamename"
+					type="text" class="txt_1"
 					value="<%CommUtils.printReqByAtt(request,response,"gamename");%>"
-					size="20"> 
-					
-					渠道号<input id="qudaonumber" name="qudaonumber"
+					size="20"> 渠道号<input id="qudaonumber" name="qudaonumber"
 					type="text" class="txt_1"
 					value="<%CommUtils.printReqByAtt(request,response,"qudaonumber");%>"
-					size="20"> 
-					<%-- 	定位类型<%if(request.getAttribute("locationType") != null && !"".equals(request.getAttribute("locationType"))){%>
+					size="20"> <%-- 	定位类型<%if(request.getAttribute("locationType") != null && !"".equals(request.getAttribute("locationType"))){%>
 						<%=request.getAttribute("locationType")%>
 						<%}else{ %>
 						<select id="locationType" name="locationType">
@@ -164,15 +156,30 @@ function add(){
 					<td><bean:write name="element" property="runwater" /></td>
 					<td><bean:write name="element" property="payarpu" /></td>
 					<td><bean:write name="element" property="livearpu" /></td>
-					<td><bean:write name="element" property="payrate" />%</td>
-					<td><bean:write name="element" property="erkeep" />%</td>
-					<td><bean:write name="element" property="sankeep" />%</td>
-					<td><bean:write name="element" property="qikeep" />%</td>
-					<td>
-					
-						<a href=# onclick="del('<bean:write name="element" property="id" />')" style="color:#0000FF" > 【删除】</a>
-						
-					</td>
+
+					<td><logic:empty name="element" property="payrate">-</logic:empty>
+						<logic:notEmpty name="element" property="payrate">
+							<bean:write name="element" property="payrate" />%
+							</logic:notEmpty></td>
+
+					<td><logic:empty name="element" property="erkeep">-</logic:empty>
+						<logic:notEmpty name="element" property="erkeep">
+							<bean:write name="element" property="erkeep" />%
+							</logic:notEmpty></td>
+
+					<td><logic:empty name="element" property="sankeep">-</logic:empty>
+						<logic:notEmpty name="element" property="sankeep">
+							<bean:write name="element" property="sankeep" />%
+							</logic:notEmpty></td>
+
+					<td><logic:empty name="element" property="qikeep">-</logic:empty>
+						<logic:notEmpty name="element" property="qikeep">
+							<bean:write name="element" property="qikeep" />%
+							</logic:notEmpty></td>
+
+					<td><a href=#
+						onclick="del('<bean:write name="element" property="id" />')"
+						style="color:#0000FF"> 【删除】</a></td>
 				</tr>
 			</logic:iterate>
 

@@ -514,10 +514,10 @@ public class LocationInfoAction extends BaseAction{
 			vo.setBattery(Integer.valueOf(request.getParameter("insertuser")));
 			vo.setLiveuser(Integer.valueOf(request.getParameter("liveuser")));
 			vo.setPayuser(Integer.valueOf(request.getParameter("payuser")));
-			vo.setRunwater(new BigDecimal(request.getParameter("runwater")));
-			vo.setPayarpu(new BigDecimal(request.getParameter("payarpu")));
-			vo.setLivearpu(new BigDecimal(request.getParameter("livearpu")));
-			vo.setPayrate(new BigDecimal(request.getParameter("payrate")));
+			vo.setRunwater(request.getParameter("runwater"));
+			vo.setPayarpu(request.getParameter("payarpu"));
+			vo.setLivearpu(request.getParameter("livearpu"));
+			vo.setPayrate(request.getParameter("payrate"));
 			vo.setErkeep(request.getParameter("erkeep"));
 			vo.setSankeep(request.getParameter("sankeep"));
 			vo.setQikeep(request.getParameter("qikeep"));

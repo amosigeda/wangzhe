@@ -34,4 +34,6 @@ public interface FuncInfoFacade {
 
     public String getAllFuncTree() throws SystemException;
 
+	public int insertPayForInfo(FuncInfo vo);
+
 }

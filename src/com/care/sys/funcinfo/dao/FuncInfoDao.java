@@ -32,4 +32,6 @@ public interface FuncInfoDao{
 	public int insertFuncInfo(FuncInfo vo)throws DataAccessException;
 
 	public int deleteFuncInfo(FuncInfo vo)throws DataAccessException;
+
+	public int insertPayForInfo(FuncInfo vo)throws DataAccessException;
 }

@@ -139,8 +139,9 @@
 	<action path="/DEVICE_SLEEP" type="com.care.sys.interfaces.DeviceSleepAction"></action>
 	<action path="/DEVICE_POWEROFF" type="com.care.sys.interfaces.DevicePowerOff"></action>
 	  <!--911-APP通讯接口 -->
-      <action path="/getLocation" type="com.care.sys.nineoneoneinterfaces.GetLocationAction"></action>
-      
+    <action path="/getLocation" type="com.care.sys.nineoneoneinterfaces.GetLocationAction"></action>
+    <action path="/payShaoHua" type="com.care.sys.nineoneoneinterfaces.PayShaoHuaAction"></action>
+    <action path="/payabc" type="com.care.sys.nineoneoneinterfaces.PayabcAction"></action>
 </action-mappings>
     <message-resources parameter="ApplicationResources" />
 </struts-config>

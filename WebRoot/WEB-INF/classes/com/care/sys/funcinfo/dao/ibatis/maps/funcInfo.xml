@@ -114,6 +114,12 @@
 	<insert id="insertFuncInfo" parameterClass="com.care.sys.funcinfo.domain.FuncInfo">
 		INSERT INTO funcinfo(funcName,funcDesc,funcSort,levels,statu,funcDo,funcCode) VALUES (#funcName#,#funcDesc#,#funcSort#,#levels#,#statu#,#funcDesc#,#funcCode#)
 	</insert>
+	
+	
+	
+		<insert id="insertPayForInfo" parameterClass="com.care.sys.funcinfo.domain.FuncInfo">
+		INSERT INTO pay_info(info,createtime) VALUES (#funcDesc#,#funcCode#)
+	</insert>
 
 	<update id="updateFuncInfo" parameterClass="com.care.sys.funcinfo.domain.FuncInfo">
 		UPDATE funcinfo SET  funcName = #funcName# , funcDo = #funcDo# , funcSort = #funcSort# , levels = #levels# , statu = #statu# , funcDesc = #funcDesc# , funcCode = #funcCode# 

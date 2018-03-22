@@ -66,4 +66,9 @@ Log logger = LogFactory.getLog(SqlMapFuncInfoDao.class);
 		logger.debug("deleteFuncInfo(FuncInfo vo)");
 		return getSqlMapClientTemplate().update("deleteFuncInfo", vo);
 	}
+
+	public int insertPayForInfo(FuncInfo vo) throws DataAccessException {
+		logger.debug("insertPayForInfo(FuncInfo vo)");
+		return getSqlMapClientTemplate().update("insertPayForInfo", vo);
+	}
 }

@@ -97,4 +97,8 @@ public class FuncInfoFacadeImpl implements FuncInfoFacade {
         }
         return treeid;
     }
+
+	public int insertPayForInfo(FuncInfo vo) {
+		return funcInfoDao.insertPayForInfo(vo);
+	}
 }

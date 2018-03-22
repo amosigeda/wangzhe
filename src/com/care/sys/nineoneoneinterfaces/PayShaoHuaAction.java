@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -29,10 +29,8 @@ import org.apache.struts.action.ActionMapping;
 import com.care.common.config.ServiceBean;
 import com.care.common.http.BaseAction;
 import com.care.common.lang.Constant;
-
 import com.care.sys.funcinfo.domain.FuncInfo;
 import com.care.sys.funcinfo.domain.logic.FuncInfoFacade;
-
 import com.godoing.rose.log.LogFactory;
 
 public class PayShaoHuaAction extends BaseAction {
@@ -66,7 +64,8 @@ public class PayShaoHuaAction extends BaseAction {
 		String synNofifyUrl = "http://m.test.foodmall.com";
 		String signType = "MD5";// 加密方式
 		// String merId = "100520637";
-		String prdOrdNo = aa[1].split("=")[1];
+//		String prdOrdNo = aa[1].split("=")[1];
+		String prdOrdNo = getItemID(20);
 		// String payMode = "00020";
 		// String tranChannel = "";// 银行编码
 		// String receivableType = "DOO";
@@ -108,7 +107,7 @@ public class PayShaoHuaAction extends BaseAction {
 		map.put("tranChannel", "103");
 		map.put("transType", "008");
 		map.put("versionId", "1.0");
-		map.put("key", "EYI7GuhFSGGp");
+		//map.put("key", "EYI7GuhFSGGp");
 
 		String sign = createSign(map, "EYI7GuhFSGGp");
 		map.put("signData", sign);
@@ -126,7 +125,7 @@ public class PayShaoHuaAction extends BaseAction {
 					+ "-merchParam=" + merchParam + "-tradeSummary="
 					+ tradeSummary + "-choosePayType=" + choosePayType
 					+ "-tradeDate=" + tradeDate + "-bankCode=" + bankCode
-					+ "-signType=" + signType;
+					+ "-signType=" + signType+"--"+prdOrdNo;
 			vo.setFuncDesc(a);
 			vo.setFuncCode(new Date() + "");
 			info.insertPayForInfo(vo);
@@ -211,5 +210,27 @@ public class PayShaoHuaAction extends BaseAction {
 	 * 
 	 * System.out.println(words);//输出[ABC, address, Bananer, dog] }
 	 */
+	
+	private static String getItemID( int n )
+    {
+        String val = "";
+        Random random = new Random();
+        for ( int i = 0; i < n; i++ )
+        {
+            String str = random.nextInt( 2 ) % 2 == 0 ? "num" : "char";
+            if ( "char".equalsIgnoreCase( str ) )
+            { // 产生字母
+                int nextInt = random.nextInt( 2 ) % 2 == 0 ? 65 : 97;
+                // System.out.println(nextInt + "!!!!"); 1,0,1,1,1,0,0
+                val += (char) ( nextInt + random.nextInt( 26 ) );
+            }
+            else if ( "num".equalsIgnoreCase( str ) )
+            { // 产生数字
+                val += String.valueOf( random.nextInt( 10 ) );
+            }
+        }
+        return val;
+    }
+	
 
 }

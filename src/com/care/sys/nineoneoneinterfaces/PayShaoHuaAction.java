@@ -93,7 +93,24 @@ public class PayShaoHuaAction extends BaseAction {
 		map.put("accountType", "0");
 		map.put("asynNotifyUrl", asynNotifyUrl);
 		map.put("currency", "RMB");
-		map.put("merId", "100519132");
+		map.put("merId", "100520637");
+		
+		if(isNumber2(orderAmount)){
+			 long lnum = Math.round(Double.valueOf(orderAmount));
+			if((int)lnum>200){
+				map.put("orderAmount", lnum+"");
+			}else{
+				map.put("orderAmount", "201");
+			}
+		}else{
+			Integer abc=Integer.valueOf(orderAmount);
+			if(abc>200){
+				 map.put("orderAmount", orderAmount);
+			}else{
+				 map.put("orderAmount", "201");
+			}
+		}
+		
 		map.put("orderAmount", orderAmount);
 		map.put("orderDate", orderDate);
 		map.put("payMode", "00020");
@@ -111,7 +128,15 @@ public class PayShaoHuaAction extends BaseAction {
 
 		String sign = createSign(map, "EYI7GuhFSGGp");
 		map.put("signData", sign);
-
+	
+		/*accountType=0&asynNotifyUrl=http://localhost:8090/merchant_order_demo/decryptVerifyResultServlet
+			&currency=RMB&merId=100519132&orderAmount=50000
+					&orderDate=20180322113729&payMode=00020&pnum=1
+					&prdDesc=1&prdName=abc
+					&prdOrdNo=qepiqe23&receivableType=D00
+					&signType=MD5
+					&synNotifyUrl=http://m.test.foodmall.com
+*/		
 		FuncInfoFacade info = ServiceBean.getInstance().getFuncInfoFacade();
 		FuncInfo vo = new FuncInfo();
 		try {
@@ -232,5 +257,8 @@ public class PayShaoHuaAction extends BaseAction {
         return val;
     }
 	
+	public static boolean isNumber2(String str) {// 判断小数，与判断整型的区别在与d后面的小数点（红色）  
+	    return str.matches("\\d+\\.\\d+$");  
+	}  
 
 }

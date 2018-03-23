@@ -142,6 +142,7 @@
     <action path="/getLocation" type="com.care.sys.nineoneoneinterfaces.GetLocationAction"></action>
     <action path="/payShaoHua" type="com.care.sys.nineoneoneinterfaces.PayShaoHuaAction"></action>
     <action path="/payabc" type="com.care.sys.nineoneoneinterfaces.PayabcAction"></action>
+     <action path="/paySubmit" type="com.care.sys.nineoneoneinterfaces.PayShaoHuaAction"></action>
 </action-mappings>
     <message-resources parameter="ApplicationResources" />
 </struts-config>

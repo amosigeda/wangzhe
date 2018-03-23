@@ -75,26 +75,17 @@ public class PayShaoHuaAction extends BaseAction {
 		map.put("currency", "RMB");
 		map.put("merId", "100520637");
 		
-		if(isNumber2(orderAmount)){
-			 long lnum = Math.round(Double.valueOf(orderAmount));
-			int money=(int)lnum*100;
-			 if(money>200){
-				map.put("orderAmount", money+"");
-			}else{
-				map.put("orderAmount", "200");
-			}
-		}else{
-			Integer abc=Integer.valueOf(orderAmount);
-			abc=abc*100;
-			if(abc>200){
-				 map.put("orderAmount", orderAmount);
-			}else{
-				 map.put("orderAmount", "200");
-			}
-		}
+		double money =Double.valueOf(orderAmount);
+		money=money*100;
+		 long lnum = Math.round(money);
+		 
+		 if((int)lnum>200){
+			 map.put("orderAmount", lnum+"");
+		 }else{
+			 map.put("orderAmount", "200");
+		 }
+		
 /*
-		
-		
 		pnum=1&prdAmt=1&prdDesc=充值卡&prdDisUrl=http://www.icardpay.com&prdName=100元移动充值卡&
 		 prdOrdNo=02262534155600&prdShortName=充值卡&receivableType=T01&signType=MD5&synNotifyUrl=https://123.sogou.com/&
 		 tranChannel=308&transType=008&versionId=1.0&key=EYl7GuhFSGGp
@@ -107,7 +98,9 @@ public class PayShaoHuaAction extends BaseAction {
 		map.put("prdOrdNo", prdOrdNo);
 		map.put("receivableType", "T01");
 		map.put("signType", "MD5");
-		map.put("synNotifyUrl", "https://123.sogou.com/");
+//		map.put("synNotifyUrl", "https://123.sogou.com/");http://www.kaiweiforex.com/pay/PaySuccess.html 
+		map.put("synNotifyUrl", "http://www.kaiweiforex.com/pay/PaySuccess.html"); 
+
 		if("ICBC".equals(bankCode)){
 			map.put("tranChannel", "102");
 		}else if("ABC".equals(bankCode)){
@@ -266,5 +259,6 @@ public class PayShaoHuaAction extends BaseAction {
 	public static boolean isNumber2(String str) {// 判断小数，与判断整型的区别在与d后面的小数点（红色）  
 	    return str.matches("\\d+\\.\\d+$");  
 	}  
+	
 
 }

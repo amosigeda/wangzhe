@@ -56,6 +56,8 @@ public interface LocationInfoDao {
 
 	public int inserQuDaoInfo(LocationInfo vo)throws DataAccessException;
 
+	public int updateQuDaoInfo(LocationInfo vo)throws DataAccessException;
+
 
 
 

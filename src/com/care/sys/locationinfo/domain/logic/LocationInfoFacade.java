@@ -51,5 +51,9 @@ public interface LocationInfoFacade {
 
 	public int inserQuDaoInfo(LocationInfo vo)throws SystemException;
 
+	public List<DataMap> getQuDaoInfo(LocationInfo vo) throws SystemException;
+
+	public int updateQuDaoInfo(LocationInfo vo)throws SystemException;
+
 
 }

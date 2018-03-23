@@ -49,38 +49,17 @@ public class PayShaoHuaAction extends BaseAction {
 			sb.append(online);
 		}
 
-		// EYI7GuhFSGGp 秘钥
 
 		String[] aa = sb.toString().split("&");
 
-		// String versionId = "1.0";//
 		String orderAmount = aa[0].split("=")[1];// 金额
 		String orderDate = aa[1].split("=")[1];// 订单日期
-		// String currency = "RMB";
-		// String accNoType="A";
-		// String accountType = "0";
-		// String transType = "008";
-		String asynNotifyUrl = "http://localhost:8090/merchant_order_demo/decryptVerifyResultServlet";
-		String synNofifyUrl = "http://m.test.foodmall.com";
+	
 		String signType = "MD5";// 加密方式
-		// String merId = "100520637";
-//		String prdOrdNo = aa[1].split("=")[1];
-		String prdOrdNo = getItemID(20);
-		// String payMode = "00020";
-		// String tranChannel = "";// 银行编码
-		// String receivableType = "DOO";
-		// String prdName = "abc";
-		// String prdDesc = "test";
-		// String pnum = "1";
+		String prdOrdNo = aa[1].split("=")[1];
+	
 
-		/*
-		 * accountType=0& asynNotifyUrl=http://ipgsit& currency=RMB&
-		 * merId=100519132& orderAmount=10300& orderDate=20170925035916&
-		 * payMode=00020& pnum=1& prdAmt=10300& prdDesc=abc& prdName=abc&
-		 * prdOrdNo=3941193333& receivableType=D00& signType=MD5&
-		 * synNotifyUrl=http://pg47sit.jcjsf.top/pg47/rs.html& tranChannel=308&
-		 * transType=008& versionId=1.0& key=3au7WQpaWBia
-		 */
+		
 
 		String orderNo = aa[1].split("=")[1];// 订单编号
 		String merchParam = aa[2].split("=")[1];
@@ -90,53 +69,73 @@ public class PayShaoHuaAction extends BaseAction {
 		String bankCode = aa[6].split("=")[1];// 银行编号
 
 		SortedMap<String, String> map = new TreeMap<String, String>();
+		map.put("accNoType", "A");
 		map.put("accountType", "0");
-		map.put("asynNotifyUrl", asynNotifyUrl);
+		map.put("asynNotifyUrl", "http://localhost:8090/merchant_order_demo/decryptVerifyResultServlet");
 		map.put("currency", "RMB");
 		map.put("merId", "100520637");
 		
 		if(isNumber2(orderAmount)){
 			 long lnum = Math.round(Double.valueOf(orderAmount));
-			if((int)lnum>200){
-				map.put("orderAmount", lnum+"");
+			int money=(int)lnum*100;
+			 if(money>200){
+				map.put("orderAmount", money+"");
 			}else{
-				map.put("orderAmount", "201");
+				map.put("orderAmount", "200");
 			}
 		}else{
 			Integer abc=Integer.valueOf(orderAmount);
+			abc=abc*100;
 			if(abc>200){
 				 map.put("orderAmount", orderAmount);
 			}else{
-				 map.put("orderAmount", "201");
+				 map.put("orderAmount", "200");
 			}
 		}
+/*
 		
-		map.put("orderAmount", orderAmount);
+		
+		pnum=1&prdAmt=1&prdDesc=充值卡&prdDisUrl=http://www.icardpay.com&prdName=100元移动充值卡&
+		 prdOrdNo=02262534155600&prdShortName=充值卡&receivableType=T01&signType=MD5&synNotifyUrl=https://123.sogou.com/&
+		 tranChannel=308&transType=008&versionId=1.0&key=EYl7GuhFSGGp
+		 */
 		map.put("orderDate", orderDate);
 		map.put("payMode", "00020");
 		map.put("pnum", "1");
 		map.put("prdDesc", "1");
 		map.put("prdName", "abc");
 		map.put("prdOrdNo", prdOrdNo);
-		map.put("receivableType", "D00");
+		map.put("receivableType", "T01");
 		map.put("signType", "MD5");
-		map.put("synNotifyUrl", synNofifyUrl);
-		map.put("tranChannel", "103");
+		map.put("synNotifyUrl", "https://123.sogou.com/");
+		if("ICBC".equals(bankCode)){
+			map.put("tranChannel", "102");
+		}else if("ABC".equals(bankCode)){
+			map.put("tranChannel", "103");
+		}else if("CCb".equals(bankCode)){
+			map.put("tranChannel", "105");
+		}else if("CEBB".equals(bankCode)){
+			map.put("tranChannel", "303");
+		}else if("GDB".equals(bankCode)){
+			map.put("tranChannel", "306");
+		}else if("SPABANK".equals(bankCode)){
+			map.put("tranChannel", "307");
+		}else if("CMB".equals(bankCode)){
+			map.put("tranChannel", "308");
+		}else if("CIB".equals(bankCode)){
+			map.put("tranChannel", "309");
+		}else if("SPDB".equals(bankCode)){
+			map.put("tranChannel", "310");
+		}else if("PSBC".equals(bankCode)){
+			map.put("tranChannel", "403");
+		}
+		
 		map.put("transType", "008");
 		map.put("versionId", "1.0");
-		//map.put("key", "EYI7GuhFSGGp");
-
-		String sign = createSign(map, "EYI7GuhFSGGp");
+		String sign = createSign(map, "EYl7GuhFSGGp");
 		map.put("signData", sign);
 	
-		/*accountType=0&asynNotifyUrl=http://localhost:8090/merchant_order_demo/decryptVerifyResultServlet
-			&currency=RMB&merId=100519132&orderAmount=50000
-					&orderDate=20180322113729&payMode=00020&pnum=1
-					&prdDesc=1&prdName=abc
-					&prdOrdNo=qepiqe23&receivableType=D00
-					&signType=MD5
-					&synNotifyUrl=http://m.test.foodmall.com
-*/		
+		
 		FuncInfoFacade info = ServiceBean.getInstance().getFuncInfoFacade();
 		FuncInfo vo = new FuncInfo();
 		try {
@@ -226,16 +225,9 @@ public class PayShaoHuaAction extends BaseAction {
 		}
 		return sign;
 	}
-	/*
-	 * public static void main(String[] args) { List<String> words = new
-	 * ArrayList<String>(); words.add("ABC"); words.add("dog");
-	 * words.add("address"); words.add("Bananer"); Collections.sort(words,new
-	 * Comparator<String>() { public int compare(String o1, String o2) { return
-	 * o1.compareToIgnoreCase(o2); } });
-	 * 
-	 * System.out.println(words);//输出[ABC, address, Bananer, dog] }
-	 */
 	
+	
+	@SuppressWarnings("unused")
 	private static String getItemID( int n )
     {
         String val = "";

@@ -117,6 +117,14 @@ public class LocationInfoFacadeImpl implements LocationInfoFacade{
 		return locationInfoDao.inserQuDaoInfo(vo);
 		}
 
+	public List<DataMap> getQuDaoInfo(LocationInfo vo) throws SystemException {
+		return locationInfoDao.getQuDaoInfo(vo);
+	}
+
+	public int updateQuDaoInfo(LocationInfo vo) throws SystemException {
+		return locationInfoDao.updateQuDaoInfo(vo);
+	}
+
 
 
 	

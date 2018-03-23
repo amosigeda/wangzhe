@@ -57,6 +57,10 @@ function add(){
 	frmGo.submit();
 }
 
+function update(id){
+	frmGo.action="doLocationInfo.do?method=initQuDaoInfoUpdate&id="+id;
+	frmGo.submit();
+}
 </script>
 <body>
 	<span class="title_1"></span>
@@ -130,7 +134,7 @@ function add(){
 			<tr class="title_2">
 				<td width="8%">日期</td>
 				<td width="8%">游戏名称</td>
-				<td width="8%">渠道号</td>
+				<td width="5%">渠道号</td>
 				<td width="6%">新增用户</td>
 				<td width="6%">活跃用户</td>
 				<td width="6%">付费用户</td>
@@ -177,9 +181,11 @@ function add(){
 							<bean:write name="element" property="qikeep" />%
 							</logic:notEmpty></td>
 
-					<td><a href=#
+					<td>
+					<a href=# onclick="update('<bean:write name="element" property="id" />')" style="color:#0000FF">【改】</a>
+					<a href=#
 						onclick="del('<bean:write name="element" property="id" />')"
-						style="color:#0000FF"> 【删除】</a></td>
+						style="color:#0000FF"> 【删】</a></td>
 				</tr>
 			</logic:iterate>
 

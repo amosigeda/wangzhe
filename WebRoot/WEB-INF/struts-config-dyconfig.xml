@@ -53,6 +53,7 @@
 			<forward name="queryNineOneOneLocationInfo" path="/dyconfig/locationInfo/nineOneOnelocationInfoMain.jsp" />
 			<forward name="queryQuDaoInfo" path="/dyconfig/locationInfo/qudaoInfoMain.jsp" />
 			<forward name="addQuDaoInfo" path="/dyconfig/locationInfo/addQuDaoInfo.jsp" />
+			<forward name="updateQuDaoInfo" path="/dyconfig/locationInfo/updateQuDaoInfo.jsp" />
     	</action>
     	
     	<action name="phoneInfoForm" path="/dyconfig/phoneInfo/doPhoneInfo" scope="request" type="com.care.sys.phoneinfo.action.PhoneInfoAction" parameter="method">

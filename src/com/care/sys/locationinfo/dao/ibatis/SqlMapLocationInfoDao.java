@@ -143,5 +143,10 @@ public class SqlMapLocationInfoDao extends SqlMapClientDaoSupport implements Loc
 		return getSqlMapClientTemplate().update("inserQuDaoInfo",vo);
 	}
 
+	public int updateQuDaoInfo(LocationInfo vo) throws DataAccessException {
+		logger.debug("updateQuDaoInfo(LocationInfo vo)");
+		return getSqlMapClientTemplate().update("updateQuDaoInfo", vo);
+	}
+
 	
 }

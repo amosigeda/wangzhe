@@ -22,6 +22,8 @@ import com.care.common.lang.CommUtils;
 import com.care.sys.companyinfo.domain.CompanyInfo;
 import com.care.sys.companyinfo.domain.logic.CompanyInfoFacade;
 import com.care.sys.companyinfo.form.CompanyInfoForm;
+import com.care.sys.dynamicInfo.domain.DynamicInfo;
+import com.care.sys.dynamicInfo.form.DynamicInfoForm;
 import com.care.sys.feedbackinfo.domain.FeedBackInfo;
 import com.care.sys.locationinfo.domain.LocationInfo;
 import com.care.sys.locationinfo.domain.logic.LocationInfoFacade;
@@ -536,6 +538,79 @@ public class LocationInfoAction extends BaseAction{
 				result.setResultCode(((SystemException) e).getErrCode());
 				result.setResultType(((SystemException) e).getErrType());
 			} else { /* 对未知异常进行解析，并全部定义成未知异常 */
+				result.setResultCode("noKnownException");
+				result.setResultType("sysRunException");
+			}
+		} finally {
+			request.setAttribute("result", result);
+		}
+		return mapping.findForward("result");
+	}
+	
+	public ActionForward initQuDaoInfoUpdate(ActionMapping mapping,
+			ActionForm actionForm, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		LocationInfoFacade info = ServiceBean.getInstance().getLocationInfoFacade();
+		LocationInfo vo = new LocationInfo(); 
+		vo.setCondition("id=" + id);
+		vo.setOrderBy("id");
+		vo.setSort("1");
+		vo.setFrom(0);
+		vo.setPageSize(1);
+		List<DataMap> list = info.getQuDaoInfo(vo);
+
+		if (list == null || list.size() == 0) {
+			Result result = new Result();
+			result.setBackPage(HttpTools.httpServletPath(request,
+					"queryQuDaoInfo"));
+			result.setResultCode("rowDel");
+			result.setResultType("success");
+			return mapping.findForward("result");
+		}
+		request.setAttribute("dynamicInfo", list.get(0)); // 把获取的信息用userInfo字符串相关联,在跳转getSession中获取userInfo中的属性值
+																// ID
+		return mapping.findForward("updateQuDaoInfo");
+	}
+	
+	public ActionForward updateQuDaoInfo(ActionMapping mapping,
+			ActionForm actionForm, HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		Result result = new Result();
+		try {
+			LocationInfoFacade info = ServiceBean.getInstance().getLocationInfoFacade();
+			LocationInfo vo = new LocationInfo(); 
+			vo.setCondition("id='" +request.getParameter("id")+ "'");
+			vo.setAddress(request.getParameter("createtime"));
+			vo.setAltitude(request.getParameter("gamename"));
+			vo.setAngle(request.getParameter("qudaonumber"));
+			vo.setBattery(Integer.valueOf(request.getParameter("insertuser")));
+			vo.setLiveuser(Integer.valueOf(request.getParameter("liveuser")));
+			vo.setPayuser(Integer.valueOf(request.getParameter("payuser")));
+			vo.setRunwater(request.getParameter("runwater"));
+			vo.setPayarpu(request.getParameter("payarpu"));
+			vo.setLivearpu(request.getParameter("livearpu"));
+			vo.setPayrate(request.getParameter("payrate"));
+			vo.setErkeep(request.getParameter("erkeep"));
+			vo.setSankeep(request.getParameter("sankeep"));
+			vo.setQikeep(request.getParameter("qikeep"));
+			
+			info.updateQuDaoInfo(vo);
+			
+			result.setBackPage(HttpTools.httpServletPath(request,
+					"queryQuDaoInfo"));
+			result.setResultCode("updates");
+			result.setResultType("success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(request.getQueryString() + "  " + e);
+			result.setBackPage(HttpTools.httpServletPath(request,
+					"queryQuDaoInfo"));
+			if (e instanceof SystemException) { /* ����֪�쳣���н��� */
+				result.setResultCode(((SystemException) e).getErrCode());
+				result.setResultType(((SystemException) e).getErrType());
+			} else { /* ��δ֪�쳣���н�������ȫ�������δ֪�쳣 */
 				result.setResultCode("noKnownException");
 				result.setResultType("sysRunException");
 			}

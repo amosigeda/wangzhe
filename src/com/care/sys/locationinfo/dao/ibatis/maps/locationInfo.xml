@@ -194,6 +194,8 @@ FROM
 		</dynamic>
 	</update>
 	
+
+	
 	
 	   <update id="updateSetInfoStatus" parameterClass="com.care.sys.locationinfo.domain.LocationInfo">
 		UPDATE device_set
@@ -286,5 +288,58 @@ FROM
 		INSERT INTO qudao(createtime,gamename,qudaonumber,insertuser,liveuser,payuser,runwater,payarpu,livearpu,payrate,erkeep,sankeep,qikeep) 
 		VALUES (#address#,#altitude#,#angle#,#battery#,#liveuser#,#payuser#,#runwater#,#payarpu#,#livearpu#,#payrate#,#erkeep#,#sankeep#,#qikeep#)
 	</insert>
+	
+		
+	 <update id="updateQuDaoInfo" parameterClass="com.care.sys.locationinfo.domain.LocationInfo">
+		UPDATE qudao
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="address">
+				createtime=#address#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="altitude">
+				gamename=#altitude#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="angle">
+				qudaonumber=#angle#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="battery">
+				insertuser=#battery#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="liveuser">
+				liveuser=#liveuser#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="payuser">
+				payuser=#payuser#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="runwater">
+				runwater=#runwater#
+			</isNotEmpty>	
+			<isNotEmpty prepend="," property="payarpu">
+				payarpu=#payarpu#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="livearpu">
+				livearpu=#livearpu#
+			</isNotEmpty>
+			
+			<!-- <isNotEmpty prepend="," property="payrate"> -->
+			,	payrate=#payrate#
+			<!-- </isNotEmpty>
+			<isNotEmpty prepend="," property="erkeep"> -->
+				,erkeep=#erkeep#
+			<!-- </isNotEmpty>
+			<isNotEmpty prepend="," property="sankeep"> -->
+				,sankeep=#sankeep#
+			<!-- </isNotEmpty>	
+			<isNotEmpty prepend="," property="qikeep"> -->
+			,	qikeep=#qikeep#
+			<!-- </isNotEmpty>	 -->								
+		</dynamic>
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="condition">
+				$condition$
+			</isNotEmpty>
+		</dynamic>
+	</update>
 	
 </sqlMap>

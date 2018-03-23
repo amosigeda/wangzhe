@@ -112,7 +112,7 @@ public class PayShaoHuaAction extends BaseAction {
 			map.put("tranChannel", "102");
 		}else if("ABC".equals(bankCode)){
 			map.put("tranChannel", "103");
-		}else if("CCb".equals(bankCode)){
+		}else if("CCB".equals(bankCode)){
 			map.put("tranChannel", "105");
 		}else if("CEBB".equals(bankCode)){
 			map.put("tranChannel", "303");

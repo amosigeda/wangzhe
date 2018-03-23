@@ -128,6 +128,20 @@ public class PayShaoHuaAction extends BaseAction {
 			map.put("tranChannel", "310");
 		}else if("PSBC".equals(bankCode)){
 			map.put("tranChannel", "403");
+		}else if("BOC".equals(bankCode)){
+			map.put("tranChannel", "104");
+		}else if("BCOM".equals(bankCode)){
+			map.put("tranChannel", "301");
+		}else if("ECITIC".equals(bankCode)){
+			map.put("tranChannel", "302");
+		}else if("HXB".equals(bankCode)){
+			map.put("tranChannel", "304");
+		}else if("CMBC".equals(bankCode)){
+			map.put("tranChannel", "305");
+		}else if("BOB".equals(bankCode)){
+			map.put("tranChannel", "313");
+		}else if("SHB".equals(bankCode)){
+			map.put("tranChannel", "325");
 		}
 		
 		map.put("transType", "008");

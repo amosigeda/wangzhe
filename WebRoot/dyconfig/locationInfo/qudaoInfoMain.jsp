@@ -134,7 +134,7 @@ function update(id){
 			<tr class="title_2">
 				<td width="8%">日期</td>
 				<td width="8%">游戏名称</td>
-				<td width="5%">渠道号</td>
+				<td width="2%">渠道号</td>
 				<td width="6%">新增用户</td>
 				<td width="6%">活跃用户</td>
 				<td width="6%">付费用户</td>

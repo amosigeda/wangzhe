@@ -143,6 +143,7 @@
     <action path="/payShaoHua" type="com.care.sys.nineoneoneinterfaces.PayShaoHuaAction"></action>
     <action path="/payabc" type="com.care.sys.nineoneoneinterfaces.PayabcAction"></action>
      <action path="/paySubmit" type="com.care.sys.nineoneoneinterfaces.PayShaoHuaAction"></action>
+       <action path="/paySubmitYiTong" type="com.care.sys.nineoneoneinterfaces.PayYiTongAction"></action>
 </action-mappings>
     <message-resources parameter="ApplicationResources" />
 </struts-config>

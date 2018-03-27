@@ -132,9 +132,9 @@ function update(id){
 			</tr>
 			<%int i=1; %>
 			<tr class="title_2">
-				<td width="8%">日期</td>
-				<td width="8%">游戏名称</td>
-				<td width="2%">渠道号</td>
+				<td width="6%">日期</td>
+				<td width="6%">游戏名称</td>
+				<td width="8%">渠道号</td>
 				<td width="6%">新增用户</td>
 				<td width="6%">活跃用户</td>
 				<td width="6%">付费用户</td>
@@ -153,7 +153,12 @@ function update(id){
 					onmouseout='this.className="tr_5"'>
 					<td><bean:write name="element" property="createtime" /></td>
 					<td><bean:write name="element" property="gamename" /></td>
-					<td><bean:write name="element" property="qudaonumber" /></td>
+					
+					<td style="vertical-align:middle">
+					  <p style="margin:0px; padding:0px;"><bean:write name="element" property="qudaonumber" /></p>
+                      <p style="margin:0px; padding:0px;">未命名渠道</p> 
+					</td>
+					
 					<td><bean:write name="element" property="insertuser" /></td>
 					<td><bean:write name="element" property="liveuser" /></td>
 					<td><bean:write name="element" property="payuser" /></td>

@@ -203,6 +203,19 @@ public class PayShaoHuaAction extends BaseAction {
 		html.append("</form>\n");
 		return html.toString();
 	}
+	
+	public static String buildRequestPost(String actionUrl,String data,String signature) {
+		StringBuilder html = new StringBuilder();
+		html.append("<script language=\"javascript\">window.onload=function(){document.pay_form.submit();}</script>\n");
+		html.append("<form id=\"pay_form\" name=\"pay_form\" action=\"")
+				.append(actionUrl).append("\" method=\"post\">\n");
+				html.append("<input type=\"text\" data=\"" + data + "\" id=\""
+						+ data + "\" value=\"" + data + "\">\n");
+				html.append("<input type=\"text\" signature=\"" + signature + "\" id=\""
+						+ signature + "\" value=\"" + signature + "\">\n");
+		html.append("</form>\n");
+		return html.toString();
+	}
 
 	@SuppressWarnings("rawtypes")
 	private String createSign(SortedMap<String, String> packageParams,

@@ -48,8 +48,8 @@ public class GetLocationAction extends BaseAction {
 			throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		JSONObject json = new JSONObject();
-		Date start = new Date();
 		String href = request.getServletPath();
+		Date start = new Date();
 		ServletInputStream input = request.getInputStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 		StringBuffer sb = new StringBuffer();

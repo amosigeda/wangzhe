@@ -1,2 +1,4 @@
 /com
-/H5KOnline.class
+/META-INF
+/applicationContext-dyconfig.xml
+/applicationContext-local.xml

@@ -10,6 +10,7 @@
 <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <script language="javascript">
+
 function loadimage(){ 
 document.getElementById("randImage").src = "image.jsp?"+Math.random(); 
 altet(Math.random());

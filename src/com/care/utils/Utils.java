@@ -95,5 +95,10 @@ public class Utils {
 	        return sb.toString();
 	    }
 
+		public static String getmd5(String string) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 
 }

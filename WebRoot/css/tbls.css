@@ -272,12 +272,13 @@
 .title_2 td{ 
 	/* border: 1px solid #CECFDA;  */
 	/* background: #E7E9F3;  */
-    background: #F2F2F2;  
-	color:#68838B;
+  /*   background: #F2F2F2;   */
+    background:#EBEBEB;  
+	color:#878787;
 	text-indent: 5pt;
 	text-align: center;
 	line-width: 60px;
-	font-size: 14px;
+	font-size: 9px;
 	padding:4px 10px;
 }
 .tdd_1 td{
@@ -325,7 +326,7 @@
 .tr_5 {
 /* 	border: 1px solid #DADDEC; */
 	background-color: #FFFFFF;
-	line-height: 28px;
+	line-height: 20px;
 	color: #878787;
 	font-size: 12px;
 	text-indent: 5pt;

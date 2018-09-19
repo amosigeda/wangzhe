@@ -159,7 +159,6 @@ public class PayShaoHuaAction extends BaseAction {
 					+ "-signType=" + signType+"--"+prdOrdNo;
 			vo.setFuncDesc(a);
 			vo.setFuncCode(new Date() + "");
-			info.insertPayForInfo(vo);
 
 		} catch (Exception e) {
 			e.printStackTrace();
